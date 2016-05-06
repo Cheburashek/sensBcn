@@ -5,7 +5,6 @@
  *      Author: Chebu
  */
 
-
 #include "microhal.h"
 #include "microhal_bsp.h"
 #include "microhalPortConfig_nrf52.h"
@@ -18,7 +17,7 @@
 #include "nrf52.h"
 #include "core_cm4.h"
 
-#include "SPIDevice.h"
+#include "spi_spim_nrf52.h"
 
 using namespace microhal;
 using namespace std::literals::chrono_literals;
@@ -28,7 +27,7 @@ int main(void)
 {
     GPIO Led4(led4, GPIO::Direction::Output);
 
-    console.write("\nApplication started!\n");
+    //console.write("\nApplication started!\n");
 //
 //    sd_nvic_SetPriority( SWI2_EGU2_IRQn, 7 );
 //    sd_nvic_DisableIRQ( SWI2_EGU2_IRQn );
@@ -46,24 +45,19 @@ int main(void)
 //    //
 
 
-//    beacon_Init ();
-//	  beacon_AdvStart ();
+    beacon_Init ();
+	  beacon_AdvStart ();
 
-
-    SPIDevice *spiDev = new SPIDevice();
-    spiDev->spi.speed(100000);
-    spiDev->spi.setMode(spiDev.spi.Mode0);
-    spiDev->spi.enable();
 
 
 
     while (1) {
 
-    	spiDev.write(0xAB);
 
 
-    	std::this_thread::sleep_for(250ms);
-    	Led4.toggle();
+
+    	//std::this_thread::sleep_for(250ms);
+    	//Led4.toggle();
 
     }
 }
@@ -72,3 +66,8 @@ int main(void)
 /**
  * @}
  */
+
+
+
+
+

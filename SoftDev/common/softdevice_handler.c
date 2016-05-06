@@ -17,7 +17,6 @@
 #include <string.h>
 #include "nordic_common.h"
 #include "app_error.h"
-#include "app_error_weak.h"
 #include "nrf_assert.h"
 #include "nrf_nvic.h"
 #include "nrf.h"
@@ -316,7 +315,7 @@ uint32_t softdevice_handler_sd_disable(void)
 #ifdef BLE_STACK_SUPPORT_REQD
 uint32_t softdevice_ble_evt_handler_set(ble_evt_handler_t ble_evt_handler)
 {
-   // VERIFY_PARAM_NOT_NULL(ble_evt_handler);
+    VERIFY_PARAM_NOT_NULL(ble_evt_handler);
 
     m_ble_evt_handler = ble_evt_handler;
 
@@ -339,7 +338,7 @@ uint32_t softdevice_ant_evt_handler_set(ant_evt_handler_t ant_evt_handler)
 
 uint32_t softdevice_sys_evt_handler_set(sys_evt_handler_t sys_evt_handler)
 {
-    //VERIFY_PARAM_NOT_NULL(sys_evt_handler);
+    VERIFY_PARAM_NOT_NULL(sys_evt_handler);
 
     m_sys_evt_handler = sys_evt_handler;
 

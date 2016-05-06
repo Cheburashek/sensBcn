@@ -44,7 +44,6 @@
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.1746116999" name="Cross ARM GNU Assembler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler">
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.assembler.usepreprocessor.1997268653" name="Use preprocessor" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.assembler.usepreprocessor" value="true" valueType="boolean"/>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.assembler.include.paths.258794411" name="Include paths (-I)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.assembler.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/Beacon}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/NRF52}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/bsp}&quot;"/>
@@ -53,20 +52,21 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/common/arm/CMSIS/Include}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/SoftDev/headers}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/NRF52/hdr}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/libraries/util}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/libraries/scheduler}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/drivers_nrf/hal}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/libraries/button}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/drivers_nrf/gpiote}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/drivers_nrf/config}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/drivers_nrf/common}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/SoftDev/common}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/SoftDev/headers/nrf52}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/Libs_SDK}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/libraries/util/timer}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/drivers_nrf/config/delay}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/SPIDevice}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/drivers_nrf/common}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/drivers_nrf/config}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/drivers_nrf/delay}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/drivers_nrf/gpiote}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/drivers_nrf/hal}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/libraries/button}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/libraries/scheduler}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/libraries/util}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/BLE}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/Beacon}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/libraries/device}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/libraries/timer}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/BLE/common}&quot;"/>
 								</option>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.assembler.defs.41331823" name="Defined symbols (-D)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.assembler.defs" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="__MICROHAL"/>
@@ -76,14 +76,12 @@
 									<listOptionValue builtIn="false" value="MICROHAL_DIAGNOSTIC_LOG_LEVEL=Debug"/>
 									<listOptionValue builtIn="false" value="BOARD_PCA10040"/>
 									<listOptionValue builtIn="false" value="GPIOTE_ENABLED=1"/>
-									<listOptionValue builtIn="false" value="BSP_SIMPLE"/>
 									<listOptionValue builtIn="false" value="BLE_STACK_SUPPORT_REQD"/>
 									<listOptionValue builtIn="false" value="S132"/>
 									<listOptionValue builtIn="false" value="SOFTDEVICE_PRESENT"/>
 									<listOptionValue builtIn="false" value="CONFIG_GPIO_AS_PINRESET"/>
 									<listOptionValue builtIn="false" value="SWI_DISABLE0"/>
 									<listOptionValue builtIn="false" value="DEBUG"/>
-									<listOptionValue builtIn="false" value="SVCALL_AS_NORMAL_FUNCTION"/>
 								</option>
 								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.input.1529092236" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.input"/>
 							</tool>
@@ -96,22 +94,22 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/common/arm/CMSIS/Include}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/Beacon}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/SoftDev/headers}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/NRF52/hdr}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/libraries/util}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/libraries/scheduler}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/drivers_nrf/hal}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/libraries/button}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/drivers_nrf/gpiote}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/drivers_nrf/config}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/drivers_nrf/common}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/SoftDev/common}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/SoftDev/headers/nrf52}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/Libs_SDK}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/libraries/util/timer}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/drivers_nrf/config/delay}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/SPIDevice}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/drivers_nrf/common}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/drivers_nrf/config}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/drivers_nrf/delay}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/drivers_nrf/gpiote}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/drivers_nrf/hal}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/libraries/button}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/libraries/scheduler}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/libraries/util}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/BLE}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/Beacon}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/libraries/device}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/libraries/timer}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/BLE/common}&quot;"/>
 								</option>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.defs.1424062865" name="Defined symbols (-D)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.defs" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="__MICROHAL"/>
@@ -121,7 +119,6 @@
 									<listOptionValue builtIn="false" value="MICROHAL_DIAGNOSTIC_LOG_LEVEL=Debug"/>
 									<listOptionValue builtIn="false" value="BOARD_PCA10040"/>
 									<listOptionValue builtIn="false" value="GPIOTE_ENABLED=1"/>
-									<listOptionValue builtIn="false" value="BSP_SIMPLE"/>
 									<listOptionValue builtIn="false" value="BLE_STACK_SUPPORT_REQD"/>
 									<listOptionValue builtIn="false" value="S132"/>
 									<listOptionValue builtIn="false" value="SOFTDEVICE_PRESENT"/>
@@ -140,22 +137,22 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/common/arm/CMSIS/Include}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/Beacon}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/SoftDev/headers}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/NRF52/hdr}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/libraries/util}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/libraries/scheduler}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/drivers_nrf/hal}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/libraries/button}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/drivers_nrf/gpiote}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/drivers_nrf/config}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/drivers_nrf/common}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/SoftDev/common}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/SoftDev/headers/nrf52}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/Libs_SDK}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/libraries/util/timer}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/ports/Nordic/drivers_nrf/config/delay}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/microHAL/SPIDevice}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/drivers_nrf/common}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/drivers_nrf/config}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/drivers_nrf/delay}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/drivers_nrf/gpiote}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/drivers_nrf/hal}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/libraries/button}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/libraries/scheduler}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/libraries/util}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/BLE}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/Beacon}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/libraries/device}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/libraries/timer}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sensBcn/BLE/common}&quot;"/>
 								</option>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.defs.328162761" name="Defined symbols (-D)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.defs" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="VENDOR_NORDIC"/>
@@ -164,7 +161,6 @@
 									<listOptionValue builtIn="false" value="MICROHAL_DIAGNOSTIC_LOG_LEVEL=Debug"/>
 									<listOptionValue builtIn="false" value="BOARD_PCA10040"/>
 									<listOptionValue builtIn="false" value="GPIOTE_ENABLED=1"/>
-									<listOptionValue builtIn="false" value="BSP_SIMPLE"/>
 									<listOptionValue builtIn="false" value="BLE_STACK_SUPPORT_REQD"/>
 									<listOptionValue builtIn="false" value="S132"/>
 									<listOptionValue builtIn="false" value="SOFTDEVICE_PRESENT"/>
@@ -172,7 +168,6 @@
 									<listOptionValue builtIn="false" value="__MICROHAL"/>
 									<listOptionValue builtIn="false" value="SWI_DISABLE0"/>
 									<listOptionValue builtIn="false" value="DEBUG"/>
-									<listOptionValue builtIn="false" value="SVCALL_AS_NORMAL_FUNCTION"/>
 								</option>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.std.1741587384" name="Language standard" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.std" useByScannerDiscovery="true" value="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.std.cpp1y" valueType="enumerated"/>
 								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.input.1708166478" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.input"/>
@@ -209,16 +204,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="microHAL/ports/Nordic/NRF52/externalInterrupt_nrf52.cpp|microHAL/os/FreeRTOS|microHAL/ports/Nordic/libraries|microHAL/math|microHAL/ports/Raspberry_Pi|microHAL/ports/portTest|microHAL/ports/Windows|microHAL/info|microHAL/nano|microHAL/cli|microHAL/ports/STMicroelectronics|microHAL/ports/SiliconLabs|App/KAmodBAR.c|microHAL/ports/Nordic/drivers_nrf|microHAL/usb|microHAL/os/Windows|microHAL/I2CDevice|microHAL/hostComm|microHAL/DSP|microHAL/button|microHAL/os/thread.cc|microHAL/buffers/tests|microHAL/os/FreeRTOS_port|microHAL/ports/Linux" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="microHAL/ports/Nordic/drivers_nrf/common"/>
-						<entry excluding="delay" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="microHAL/ports/Nordic/drivers_nrf/config"/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="microHAL/ports/Nordic/drivers_nrf/config/delay"/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="microHAL/ports/Nordic/drivers_nrf/gpiote"/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="microHAL/ports/Nordic/drivers_nrf/hal"/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="microHAL/ports/Nordic/libraries/button"/>
-						<entry excluding="app_scheduler_serconn.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="microHAL/ports/Nordic/libraries/scheduler"/>
-						<entry excluding="timer" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="microHAL/ports/Nordic/libraries/util"/>
-						<entry excluding="app_timer_ble_gzll.c|app_timer_appsh.c|app_timer_freertos.c|app_timer_rtx.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="microHAL/ports/Nordic/libraries/util/timer"/>
+						<entry excluding="libraries/scheduler/app_scheduler_serconn.c|libraries/timer/app_timer_ble_gzll.c|microHAL/ports/Nordic/NRF52/hdr|microHAL/os/FreeRTOS|microHAL/ports/Nordic/NRF52/externalInterrupt_nrf52.cpp|microHAL/ports/Nordic/libraries|microHAL/math|microHAL/ports/Raspberry_Pi|microHAL/ports/portTest|microHAL/ports/Windows|microHAL/info|microHAL/nano|microHAL/cli|microHAL/ports/STMicroelectronics|microHAL/ports/SiliconLabs|App/KAmodBAR.c|microHAL/ports/Nordic/drivers_nrf|microHAL/usb|microHAL/os/Windows|microHAL/I2CDevice|microHAL/hostComm|microHAL/DSP|microHAL/button|microHAL/os/thread.cc|microHAL/buffers/tests|microHAL/os/FreeRTOS_port|microHAL/ports/Linux" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

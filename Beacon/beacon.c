@@ -156,7 +156,7 @@ void beacon_Init ( void )
 {
     uint32_t err_code;
     // Initialize.
-    APP_TIMER_INIT(APP_TIMER_PRESCALER, 2, APP_TIMER_OP_QUEUE_SIZE, false);
+    APP_TIMER_INIT(APP_TIMER_PRESCALER, APP_TIMER_OP_QUEUE_SIZE, false);
     err_code = bsp_init(BSP_INIT_LED, APP_TIMER_TICKS(100, APP_TIMER_PRESCALER), NULL);
     APP_ERROR_CHECK(err_code);
     ble_stack_init();

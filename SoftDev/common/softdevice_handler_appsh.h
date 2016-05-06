@@ -13,8 +13,8 @@
 #ifndef SOFTDEVICE_HANDLER_APPSH_H
 #define SOFTDEVICE_HANDLER_APPSH_H
 
+#include "softdevice_handler.h"
 #include <stdint.h>
-#include "../common/softdevice_handler.h"
 
 #define SOFTDEVICE_HANDLER_APPSH_INIT(CLOCK_SOURCE,USE_SCHEDULER) \
     SOFTDEVICE_HANDLER_INIT(CLOCK_SOURCE,(USE_SCHEDULER) ? softdevice_evt_schedule : NULL)

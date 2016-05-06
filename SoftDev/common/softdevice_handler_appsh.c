@@ -10,8 +10,7 @@
  *
  */
 
-#include "../common/softdevice_handler_appsh.h"
-
+#include "softdevice_handler_appsh.h"
 #include "app_scheduler.h"
 #include <string.h>
 
