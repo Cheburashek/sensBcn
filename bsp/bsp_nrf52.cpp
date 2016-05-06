@@ -34,17 +34,18 @@ using namespace nrf52;
 void hardwareConfig(void) {
 	SystemInit();
 
-//	IOManager::routeSerial<0, Txd, nrf52::GPIO::Port0, 6>();
-//	IOManager::routeSerial<0, Rxd, nrf52::GPIO::Port0, 8>();
-//
-//	microhal::nrf52::SerialPort::Serial0.open(nrf52::SerialPort::OpenMode::ReadWrite);
-//	microhal::nrf52::SerialPort::Serial0.setBaudRate(nrf52::SerialPort::BaudRate::Baud38400);
-//	microhal::nrf52::SerialPort::Serial0.setParity(nrf52::SerialPort::Parity::NoParity);
-//
-//    IOManager::routeSPImaster<1, MISO, nrf52::GPIO::Port0, 2>();
-//    IOManager::routeSPImaster<1, MOSI, nrf52::GPIO::Port0, 3>();
-//    IOManager::routeSPImaster<1, SCK, nrf52::GPIO::Port0, 4>();
-//
+	IOManager::routeSerial<0, Txd, nrf52::GPIO::Port0, 6>();
+	IOManager::routeSerial<0, Rxd, nrf52::GPIO::Port0, 8>();
+
+	microhal::nrf52::SerialPort::Serial0.open(nrf52::SerialPort::OpenMode::ReadWrite);
+	microhal::nrf52::SerialPort::Serial0.setBaudRate(nrf52::SerialPort::BaudRate::Baud38400);
+	microhal::nrf52::SerialPort::Serial0.setParity(nrf52::SerialPort::Parity::NoParity);
+
+    IOManager::routeSPImaster<1, MISO, nrf52::GPIO::Port0, 2>();
+    IOManager::routeSPImaster<1, MOSI, nrf52::GPIO::Port0, 3>();
+    IOManager::routeSPImaster<1, SCK, nrf52::GPIO::Port0, 4>();
+
+// FIXME Causes problem with softDevice (NVIC)
 //    nrf52::SPI::spi1.init();
 //    nrf52::SPI::spi1.setMode(nrf52::SPI::Mode::Mode0);
 //    nrf52::SPI::spi1.speed(1000000);
