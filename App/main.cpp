@@ -4,20 +4,20 @@
  *  Created on: 20 kwi 2016
  *      Author: Chebu
  */
-
+//
 #include "microhal.h"
 #include "microhal_bsp.h"
 #include "microhalPortConfig_nrf52.h"
 
 #include "beacon.h"
-
-#include "boards.h"
-#include "nrf_nvic.h"
-
+#include "nrf_clock.h"
+//#include "boards.h"
+//#include "nrf_nvic.h"
+//
 #include "nrf52.h"
-#include "core_cm4.h"
-
-#include "spi_spim_nrf52.h"
+//#include "core_cm4.h"
+//
+//#include "spi_spim_nrf52.h"
 
 using namespace microhal;
 using namespace std::literals::chrono_literals;
@@ -25,25 +25,24 @@ using namespace std::literals::chrono_literals;
 
 int main(void)
 {
-    GPIO Led4(led4, GPIO::Direction::Output);
+//    GPIO Led4(led4, GPIO::Direction::Output);
 
     //console.write("\nApplication started!\n");
-//
-//    sd_nvic_SetPriority( SWI2_EGU2_IRQn, 7 );
-//    sd_nvic_DisableIRQ( SWI2_EGU2_IRQn );
 
-    //
-//
-//    sd_nvic_SetPriority( (IRQn_Type)0, 4 );
-//    sd_nvic_SetPriority( (IRQn_Type)13, 4 );
-//    sd_nvic_SetPriority( (IRQn_Type)14, 4 );
-//    sd_nvic_SetPriority( (IRQn_Type)15, 4 );
-//    sd_nvic_SetPriority( (IRQn_Type)17, 6 );
-//    sd_nvic_SetPriority( (IRQn_Type)20, 6 );
-//    sd_nvic_SetPriority( (IRQn_Type)21, 7 );
-//    sd_nvic_SetPriority( (IRQn_Type)25, 4 );
-//    //
 
+//	if ( nrf_clock_lf_is_running() ) console.write("\nLFCLK running\n");
+//	else console.write("\nLFCLK NOT running\n");
+
+
+//	nrf_clock_lf_src_set(NRF_CLOCK_LFCLK_Synth);
+//
+//	nrf_clock_task_trigger(NRF_CLOCK_TASK_LFCLKSTART);
+//
+//
+//	std::this_thread::sleep_for(250ms);
+
+//	if ( nrf_clock_lf_is_running() ) console.write("\nLFCLK running\n");
+//	else console.write("\nLFCLK NOT running\n");
 
     beacon_Init ();
 	  beacon_AdvStart ();
@@ -61,6 +60,10 @@ int main(void)
 
     }
 }
+
+
+
+//fixme zmieniony system_nrf52.c
 
 
 /**
