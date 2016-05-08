@@ -11,8 +11,14 @@
 #include <stdint.h>
 #include "SPIDevice.h"
 
+#define MPL_SPI_SPEED 4000000
 
 // SPI commands:
+#define MPL_CONVSTART		0x24
+
+#define MPL_READ_PRESS_MSB 	0x80
+#define MPL_READ_PRESS_LSB 	0x82
+
 #define MPL_READ_TEMP_MSB 	0x84
 #define MPL_READ_TEMP_LSB 	0x86
 
@@ -29,10 +35,16 @@ public:
 
 	// MEthods:
 	void init ( void );
-	bool readTempRaw ( uint16_t *buff );
+	bool readRawPress ( uint16_t *buff );
+	bool readRawTemp ( uint16_t *buff );
+	bool startConv ( void );
 
-	// Variables/objects:
+
+	// Objects:
 	SPIDevice *spiDev;
+
+	// Variables:
+	const uint8_t startBuff[2] = { MPL_CONVSTART, 0x00 };
 
 };
 

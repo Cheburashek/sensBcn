@@ -32,7 +32,6 @@ int main ( void )
     GPIO Led4(led4, GPIO::Direction::Output);
 
 
-
 	console.write ( "Application started!\n" );
 
 	beacon_Init ();
@@ -47,14 +46,21 @@ int main ( void )
 
 	while ( 1 )
 	{
-		nrf_delay_ms ( 500 );
 
-		mpl115.readTempRaw( &tempBuff );
+		mpl115.startConv ();
+		nrf_delay_ms ( 4 );
+		mpl115.readRawPress ( &tempBuff );
 
-		len = sprintf ( str, "Buff: %i\n", tempBuff );
+		len = sprintf ( str, "Press RAW: %i\n", tempBuff );
+		console.write ( str, len );
+
+		mpl115.readRawTemp ( &tempBuff );
+
+		len = sprintf ( str, "Temp RAW: %i\n", tempBuff );
 		console.write ( str, len );
 
 		Led4.toggle();
+		nrf_delay_ms ( 500 );
 	}
 }
 
