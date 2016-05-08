@@ -30,12 +30,17 @@
 #ifndef NRF52_PCA10040_H_
 #define NRF52_PCA10040_H_
 
-constexpr microhal::GPIO::IOPin led1(microhal::nrf52::GPIO::Port0, 17);
-constexpr microhal::GPIO::IOPin led2(microhal::nrf52::GPIO::Port0, 18);
-constexpr microhal::GPIO::IOPin led3(microhal::nrf52::GPIO::Port0, 19);
-constexpr microhal::GPIO::IOPin led4(microhal::nrf52::GPIO::Port0, 20);
+namespace microhal{
 
-microhal::IODevice &console = microhal::nrf52::SerialPort::Serial0;
-microhal::SPI &SPIM = microhal::nrf52::SPI::spi1;
 
+constexpr GPIO::IOPin led1(nrf52::GPIO::Port0, 17);
+constexpr GPIO::IOPin led2(nrf52::GPIO::Port0, 18);
+constexpr GPIO::IOPin led3(nrf52::GPIO::Port0, 19);
+constexpr GPIO::IOPin led4(nrf52::GPIO::Port0, 20);
+
+
+IODevice &console = nrf52::SerialPort::Serial0;
+SPI &SPIM = nrf52::SPI::spi1;
+
+}
 #endif /* NRF52_PCA10036_H_ */

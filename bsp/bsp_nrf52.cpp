@@ -41,9 +41,9 @@ void hardwareConfig(void) {
 	microhal::nrf52::SerialPort::Serial0.setBaudRate(nrf52::SerialPort::BaudRate::Baud38400);
 	microhal::nrf52::SerialPort::Serial0.setParity(nrf52::SerialPort::Parity::NoParity);
 
-    IOManager::routeSPImaster<1, MISO, nrf52::GPIO::Port0, 2>();
+    IOManager::routeSPImaster<1, MISO, nrf52::GPIO::Port0, 4>();
     IOManager::routeSPImaster<1, MOSI, nrf52::GPIO::Port0, 3>();
-    IOManager::routeSPImaster<1, SCK, nrf52::GPIO::Port0, 4>();
+    IOManager::routeSPImaster<1, SCK, nrf52::GPIO::Port0, 28>();
 
 // FIXME Causes problem with softDevice (NVIC)
 //    nrf52::SPI::spi1.init();
