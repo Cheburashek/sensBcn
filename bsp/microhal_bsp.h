@@ -39,8 +39,8 @@ constexpr GPIO::IOPin led3(nrf52::GPIO::Port0, 19);
 constexpr GPIO::IOPin led4(nrf52::GPIO::Port0, 20);
 
 
-IODevice &console = nrf52::SerialPort::Serial0;
-SPI &SPIM = nrf52::SPI::spi1;
+//IODevice &console = nrf52::SerialPort::Serial0;	// fixme problem with multiple definition
+//SPI &SPIM = nrf52::SPI::spi1;
 
 }
 #endif /* NRF52_PCA10036_H_ */

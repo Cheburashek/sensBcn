@@ -22,6 +22,8 @@
 #define MPL_READ_TEMP_MSB 	0x84
 #define MPL_READ_TEMP_LSB 	0x86
 
+#define MPL_READ_COEFF_BASE 0x88
+
 // Class
 namespace microhal {
 
@@ -33,18 +35,27 @@ public:
 	MPL115 ( );
 	~MPL115 ( );
 
-	// MEthods:
+	// Public methods:
 	void init ( void );
 	bool readRawPress ( uint16_t *buff );
 	bool readRawTemp ( uint16_t *buff );
 	bool startConv ( void );
-
 
 	// Objects:
 	SPIDevice *spiDev;
 
 	// Variables:
 	const uint8_t startBuff[2] = { MPL_CONVSTART, 0x00 };
+
+private:
+
+	// Private methods:
+	bool calibrate ( void );
+
+	// Private variables:
+	// Coefficients:
+	float a0, b1, b2;
+	double c12;
 
 };
 

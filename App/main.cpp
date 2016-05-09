@@ -21,6 +21,8 @@ static MPL115 mpl115;
 
 uint16_t tempBuff;
 
+IODevice &console = nrf52::SerialPort::Serial0;
+
 int main ( void )
 {
 
@@ -44,7 +46,7 @@ int main ( void )
 
 	mpl115.init();
 
-	while ( 1 )
+	//while ( 1 )
 	{
 
 		mpl115.startConv ();
