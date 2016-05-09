@@ -32,6 +32,7 @@ void beacon_Init ( void );
  */
 void beacon_AdvStart ( void );
 
+void beacon_SetMajMin ( uint16_t major, uint16_t minor );
 
 #ifdef __cplusplus
 } // extern

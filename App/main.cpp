@@ -38,7 +38,7 @@ int main ( void )
 	console.write ( "Application started!\n" );
 
 	beacon_Init ();
-	//beacon_AdvStart ();
+	beacon_AdvStart ();
 
 	Led3.reset();
 	nrf_delay_ms ( 100 );
@@ -50,10 +50,14 @@ int main ( void )
 	{
 
 		mpl115->getMeasurements ( press, temp );
+
 		len = sprintf ( str, "Press = %i [hPa]\n Temp = %f [C]\n\n", (int)press, temp );
 		console.write ( str, len );
 
+		beacon_SetMajMin ( (uint16_t)press, 0xBEEF );
+
 		Led4.toggle();
+
 		nrf_delay_ms ( 1000 );
 	}
 }

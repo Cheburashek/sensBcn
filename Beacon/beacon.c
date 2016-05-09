@@ -56,7 +56,7 @@
    LOCAL VARIABLES
 */
 static ble_gap_adv_params_t m_adv_params; /**< Parameters to be passed to the stack when starting advertising. */
-static uint8_t m_beacon_info[APP_BEACON_INFO_LENGTH] =                    /**< Information advertised by the Beacon. */
+static uint8_t m_beacon_info[APP_BEACON_INFO_LENGTH] =                    /**< Information advertised by the Beacon. */	// TODO: struct
 {
     APP_DEVICE_TYPE,     // Manufacturer specific information. Specifies the device type in this
                          // implementation.
@@ -173,4 +173,14 @@ void beacon_AdvStart ( void )
 
     err_code = bsp_indication_set(BSP_INDICATE_ADVERTISING);
     APP_ERROR_CHECK(err_code);
+}
+
+//****************************************************************************************
+void beacon_SetMajMin ( uint16_t major, uint16_t minor )
+{
+	m_beacon_info[18] = (uint8_t)(major>>8);	// TODO: struct
+	m_beacon_info[19] = (uint8_t)(major);
+	m_beacon_info[20] = (uint8_t)(minor>>8);
+	m_beacon_info[21] = (uint8_t)(minor);
+	advertising_init();	// fixme TODO very temporary!!!!
 }
