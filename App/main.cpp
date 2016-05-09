@@ -10,29 +10,24 @@
 #include "microhalPortConfig_nrf52.h"
 
 #include "beacon.h"
-#include "MPL115_drv.h"
-
+#include "MPL115A1_drv.h"
 #include "nrf_delay.h"
 
 using namespace microhal;
 using namespace std::literals::chrono_literals;
 
-static MPL115* mpl115;
+static MPL115A1* mpl115;
 
-uint16_t tempBuff;
+static char str[100];
+static int len = 0;
+static uint16_t press;
 
 int main ( void )
 {
-
-	uint16_t tempData = 0;
-	char str[100];
-	int len = 0;
-	float temp, press;
-
     GPIO Led3(led3, GPIO::Direction::Output);
     GPIO Led4(led4, GPIO::Direction::Output);
 
-	console.write ( "Application started!\n" );
+	console.write ( "sensBcn started!\n" );
 
 	beacon_Init ();
 	beacon_AdvStart ();
@@ -46,22 +41,28 @@ int main ( void )
     nrf52::SPI::spi1.speed(4000000);
     nrf52::SPI::spi1.enable();
 
-	mpl115 = new MPL115 ( SPIM, CSpin );
+	mpl115 = new MPL115A1 ( SPIM, CSpin );
 
 
 	while ( 1 )
 	{
 
-		mpl115->getMeasurements ( press, temp );
+		if ( mpl115->getPressure_hPa ( press ) )
+		{
+			len = sprintf ( str, "Press = %i [hPa]\n\n", (int)press );
+			console.write ( str, len );
+			beacon_SetMajMin ( (uint16_t)press, 0x0000 );
+		}
+		else	// TODO: better manner
+		{
+			len = sprintf ( str, "ERROR from SPI" );
+			console.write ( str, len );
+			beacon_SetMajMin ( 0xDEAD, 0xBEEF );
+		}
 
-		len = sprintf ( str, "Press = %i [hPa]\n Temp = %f [C]\n\n", (int)press, temp );
-		console.write ( str, len );
-
-		beacon_SetMajMin ( (uint16_t)press, 0xBEEF );
-
-		Led4.toggle();
-
-		nrf_delay_ms ( 1000 );
+		Led4.reset();
+		nrf_delay_ms ( 120 );
+		Led4.set();
 	}
 }
 

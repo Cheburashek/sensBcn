@@ -5,25 +5,25 @@
  *      Author: Cheburashek
  */
 
-// TODO : app error!
-#include "MPL115_drv.h"
-#include "nrf_delay.h"
-
+#include "MPL115A1_drv.h"
+#include <thread>
 
 namespace microhal
 {
 //*******************************************************************************************************************
 // Constructor
-MPL115::MPL115 ( SPI &spi, const GPIO::IOPin CEpin ) : SPIDevice ( spi, CEpin )
+MPL115A1::MPL115A1 ( SPI &spi, const GPIO::IOPin CEpin ) :
+			SPIDevice ( spi, CEpin )
 {
 	calibrate ();
 }
-MPL115::~MPL115 ()
+
+MPL115A1::~MPL115A1 ()
 {
 }
 
 //*******************************************************************************************************************
-bool MPL115::getMeasurements ( float &press, float &temp )
+bool MPL115A1::getPressure_hPa ( uint16_t &press )
 {
 	uint8_t errBit = 0x00;
 	uint16_t Padc = 0x00;
@@ -31,15 +31,13 @@ bool MPL115::getMeasurements ( float &press, float &temp )
 	float Pcomp = 0.0;
 
 	errBit = !startConv ();
-	nrf_delay_ms ( 3 );						// TODO: timer, callback?
+	std::this_thread::sleep_for ( std::chrono::milliseconds { 3 } );     // TODO: timer + callback ?
 
-	readRawPress ( Padc );
-	readRawTemp ( Tadc );
+	errBit = (errBit << 1) | !readRawPress ( Padc );
+	errBit = (errBit << 1) | !readRawTemp ( Tadc );
 
 	Pcomp = a0 + (b1 + ((double) Tadc) * c12) * ((float) Padc) + b2 * ((float) Tadc);
-
-	press = Pcomp * 0.63538612 + 500;    	// Pressure in [hPa]
-	temp = (((float) Tadc) / 1023) * c12 + b2;		// TODO: tempereature
+	press = (uint16_t)(Pcomp * 0.63538612 + 500);    	// Pressure in [hPa]
 
 	if ( errBit ) return false;
 	else return true;
@@ -48,46 +46,48 @@ bool MPL115::getMeasurements ( float &press, float &temp )
 // Private methods:
 
 //*******************************************************************************************************************
-bool MPL115::startConv ( void )
+bool MPL115A1::startConv ( void )
 {
 	uint8_t startBuff[2] = { MPL_CONVSTART, 0x00 };
 	return writeBuffer ( startBuff, sizeof(startBuff), true );
 }
 
 //*******************************************************************************************************************
-bool MPL115::readRawPress ( uint16_t &buff )
+bool MPL115A1::readRawPress ( uint16_t &buff )
 {
 	bool retVal = false;
 	uint8_t tempBuf;
 
 	if ( readRegister ( MPL_READ_PRESS_MSB, tempBuf ) ) 			// Pressure MSB
 	{
-		buff = (static_cast<uint16_t> ( tempBuf )) << 2;					// 8 from 10bits
+		buff = ((uint16_t) tempBuf) << 8;							// 8 from 10bits
 		retVal = readRegister ( MPL_READ_PRESS_LSB, tempBuf );    	// Pressure LSB -2bits
-		buff |= (tempBuf >> 6) & 0x03;
+		buff |= tempBuf;
+		buff >>= 6;	// 10bit as uint16
 	}
 
 	return retVal;
 }
 
 //*******************************************************************************************************************
-bool MPL115::readRawTemp ( uint16_t &buff )
+bool MPL115A1::readRawTemp ( uint16_t &buff )
 {
 	bool retVal = false;
 	uint8_t tempBuf;
 
 	if ( readRegister ( MPL_READ_TEMP_MSB, tempBuf ) )    			// Temperature MSB
 	{
-		buff = (static_cast<uint16_t> ( tempBuf )) << 2;			// 8 from 10bits
+		buff = ((uint16_t) tempBuf) << 8;							// 8 from 10bits
 		retVal = readRegister ( MPL_READ_TEMP_LSB, tempBuf );     	// Temperature LSB 2bits
-		buff |= (tempBuf >> 6) & 0x03;
+		buff |= tempBuf;
+		buff >>= 6;	// 10bit as uint16
 	}
 
 	return retVal;
 }
 
 //*******************************************************************************************************************
-bool MPL115::calibrate ( void )
+bool MPL115A1::calibrate ( void )
 {
 	uint8_t errBit = 0;
 	uint8_t tempBuf = 0;
@@ -96,7 +96,7 @@ bool MPL115::calibrate ( void )
 
 	// ---- Reading of a0:
 	errBit = readRegister ( MPL_READ_COEFF_BASE, tempBuf );    						   // 0x88->a0 MSB	@16bit
-	temp16 = (static_cast<uint16_t> ( tempBuf )) << 8;
+	temp16 = ((uint16_t) tempBuf ) << 8;
 	errBit = (errBit << 1) | readRegister ( MPL_READ_COEFF_BASE + 0x02, tempBuf );     // 0x8A->a0 LSB	@16bit
 	temp16 |= tempBuf;
 
@@ -111,7 +111,7 @@ bool MPL115::calibrate ( void )
 
 	// ---- Reading of b1:
 	errBit = (errBit << 1) | readRegister ( MPL_READ_COEFF_BASE + 0x04, tempBuf );		// 0x8C->b1 MSB	@16bit
-	temp16 = (static_cast<uint16_t> ( tempBuf )) << 8;
+	temp16 = ((uint16_t) tempBuf ) << 8;
 	errBit = (errBit << 1) | readRegister ( MPL_READ_COEFF_BASE + 0x06, tempBuf );		// 0x8E->b1 LSB	@16bit
 	temp16 |= tempBuf;
 
@@ -126,7 +126,7 @@ bool MPL115::calibrate ( void )
 
 	// ---- Reading of b2:
 	errBit = (errBit << 1) | readRegister ( MPL_READ_COEFF_BASE + 0x08, tempBuf );		// 0x90->b2 MSB	@16bit
-	temp16 = (static_cast<uint16_t> ( tempBuf )) << 8;
+	temp16 = ((uint16_t) tempBuf ) << 8;
 	errBit = (errBit << 1) | readRegister ( MPL_READ_COEFF_BASE + 0x0A, tempBuf );		// 0x92->b2 LSB	@16bit
 	temp16 |= tempBuf;
 
@@ -141,7 +141,7 @@ bool MPL115::calibrate ( void )
 
 	// ---- Reading of c12:
 	errBit = (errBit << 1) | readRegister ( MPL_READ_COEFF_BASE + 0x0C, tempBuf );		// 0x94->c12 MSB @14bit
-	temp16 = (static_cast<uint16_t> ( tempBuf )) << 6;
+	temp16 = ((uint16_t) tempBuf ) << 8;
 	errBit = (errBit << 1) | readRegister ( MPL_READ_COEFF_BASE + 0x0E, tempBuf );		// 0x96->c12 LSB @14bit
 	temp16 |= (tempBuf >> 2) & 0x3F;
 
@@ -165,3 +165,4 @@ bool MPL115::calibrate ( void )
 //*******************************************************************************************************************
 
 }// namespace microhal
+

@@ -1,12 +1,12 @@
 /*
- * MPL115_drv.h
+ * MPL115A1_drv.h
  *
  *  Created on: 7 maj 2016
  *      Author: Cheburashek
  */
 
-#ifndef MPL115_DRV_H_
-#define MPL115_DRV_H_
+#ifndef MPL115A1_DRV_H_
+#define MPL115A1_DRV_H_
 
 #include "microhal.h"
 #include "SPIDevice.h"
@@ -21,16 +21,16 @@
 
 // Class
 namespace microhal {
-class MPL115:  private SPIDevice {
+class MPL115A1:  private SPIDevice {
 
 public:
 
 	// Constructors:
-	MPL115 ( SPI &spi, const GPIO::IOPin CEpin);
-	~MPL115 ();
+	MPL115A1 ( SPI &spi, const GPIO::IOPin CEpin);
+	~MPL115A1 ();
 
 	// Public methods:
-	bool getMeasurements ( float &press, float &temp );
+	bool getPressure_hPa ( uint16_t &press );
 
 private:
 
@@ -49,4 +49,5 @@ private:
 
 } // namespace microhal
 
-#endif /* MPL115_DRV_H_ */
+#endif /* MPL115A1_DRV_H_ */
+
