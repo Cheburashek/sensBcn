@@ -36,10 +36,10 @@ public:
 	~MPL115 ( );
 
 	// Public methods:
-	void init ( void );
-	bool readRawPress ( uint16_t *buff );
-	bool readRawTemp ( uint16_t *buff );
-	bool startConv ( void );
+
+	bool getMeasurements ( float &press, float &temp );
+
+
 
 	// Objects:
 	SPIDevice *spiDev;
@@ -50,7 +50,12 @@ public:
 private:
 
 	// Private methods:
+	void init ( void );
+	bool readRawPress ( uint16_t &buff );
+	bool readRawTemp ( uint16_t &buff );
+	bool startConv ( void );
 	bool calibrate ( void );
+
 
 	// Private variables:
 	// Coefficients:

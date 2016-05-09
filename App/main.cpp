@@ -17,7 +17,7 @@
 using namespace microhal;
 using namespace std::literals::chrono_literals;
 
-static MPL115 mpl115;
+static MPL115* mpl115;
 
 uint16_t tempBuff;
 
@@ -29,6 +29,7 @@ int main ( void )
 	uint16_t tempData = 0;
 	char str[100];
 	int len = 0;
+	float temp, press;
 
     GPIO Led3(led3, GPIO::Direction::Output);
     GPIO Led4(led4, GPIO::Direction::Output);
@@ -43,26 +44,17 @@ int main ( void )
 	nrf_delay_ms ( 100 );
 	Led3.set();
 
+	mpl115 = new MPL115();
 
-	mpl115.init();
-
-	//while ( 1 )
+	while ( 1 )
 	{
 
-		mpl115.startConv ();
-		nrf_delay_ms ( 4 );
-		mpl115.readRawPress ( &tempBuff );
-
-		len = sprintf ( str, "Press RAW: %i\n", tempBuff );
-		console.write ( str, len );
-
-		mpl115.readRawTemp ( &tempBuff );
-
-		len = sprintf ( str, "Temp RAW: %i\n", tempBuff );
+		mpl115->getMeasurements ( press, temp );
+		len = sprintf ( str, "Press = %i [hPa]\n Temp = %f [C]\n\n", (int)press, temp );
 		console.write ( str, len );
 
 		Led4.toggle();
-		nrf_delay_ms ( 500 );
+		nrf_delay_ms ( 1000 );
 	}
 }
 
