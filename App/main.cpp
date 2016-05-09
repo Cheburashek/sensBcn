@@ -21,8 +21,6 @@ static MPL115* mpl115;
 
 uint16_t tempBuff;
 
-IODevice &console = nrf52::SerialPort::Serial0;
-
 int main ( void )
 {
 
@@ -34,7 +32,6 @@ int main ( void )
     GPIO Led3(led3, GPIO::Direction::Output);
     GPIO Led4(led4, GPIO::Direction::Output);
 
-
 	console.write ( "Application started!\n" );
 
 	beacon_Init ();
@@ -44,7 +41,13 @@ int main ( void )
 	nrf_delay_ms ( 100 );
 	Led3.set();
 
-	mpl115 = new MPL115();
+    nrf52::SPI::spi1.init();			// fixme : from bsp_nrf52.h, because of softdevice
+    nrf52::SPI::spi1.setMode(nrf52::SPI::Mode::Mode0);
+    nrf52::SPI::spi1.speed(4000000);
+    nrf52::SPI::spi1.enable();
+
+	mpl115 = new MPL115 ( SPIM, CSpin );
+
 
 	while ( 1 )
 	{

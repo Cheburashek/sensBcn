@@ -8,54 +8,37 @@
 #ifndef MPL115_DRV_H_
 #define MPL115_DRV_H_
 
-#include <stdint.h>
+#include "microhal.h"
 #include "SPIDevice.h"
-
-#define MPL_SPI_SPEED 4000000
 
 // SPI commands:
 #define MPL_CONVSTART		0x24
-
 #define MPL_READ_PRESS_MSB 	0x80
 #define MPL_READ_PRESS_LSB 	0x82
-
 #define MPL_READ_TEMP_MSB 	0x84
 #define MPL_READ_TEMP_LSB 	0x86
-
 #define MPL_READ_COEFF_BASE 0x88
 
 // Class
 namespace microhal {
-
-class MPL115 {
+class MPL115:  private SPIDevice {
 
 public:
 
 	// Constructors:
-	MPL115 ( );
-	~MPL115 ( );
+	MPL115 ( SPI &spi, const GPIO::IOPin CEpin);
+	~MPL115 ();
 
 	// Public methods:
-
 	bool getMeasurements ( float &press, float &temp );
-
-
-
-	// Objects:
-	SPIDevice *spiDev;
-
-	// Variables:
-	const uint8_t startBuff[2] = { MPL_CONVSTART, 0x00 };
 
 private:
 
 	// Private methods:
-	void init ( void );
 	bool readRawPress ( uint16_t &buff );
 	bool readRawTemp ( uint16_t &buff );
 	bool startConv ( void );
 	bool calibrate ( void );
-
 
 	// Private variables:
 	// Coefficients:

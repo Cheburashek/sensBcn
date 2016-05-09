@@ -55,6 +55,8 @@
 /*****************************************************************************************
    LOCAL VARIABLES
 */
+static ble_advdata_t advdata;
+static  ble_advdata_manuf_data_t manuf_specific_data;
 static ble_gap_adv_params_t m_adv_params; /**< Parameters to be passed to the stack when starting advertising. */
 static uint8_t m_beacon_info[APP_BEACON_INFO_LENGTH] =                    /**< Information advertised by the Beacon. */	// TODO: struct
 {
@@ -94,10 +96,7 @@ static void ble_stack_init(void);
 static void advertising_init(void)
 {
     uint32_t      err_code;
-    ble_advdata_t advdata;
     uint8_t       flags = BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED;
-
-    ble_advdata_manuf_data_t manuf_specific_data;
 
     manuf_specific_data.company_identifier = APP_COMPANY_IDENTIFIER;
     manuf_specific_data.data.p_data = (uint8_t *) m_beacon_info;
@@ -178,9 +177,14 @@ void beacon_AdvStart ( void )
 //****************************************************************************************
 void beacon_SetMajMin ( uint16_t major, uint16_t minor )
 {
-	m_beacon_info[18] = (uint8_t)(major>>8);	// TODO: struct
+	uint32_t err_code;
+
+	m_beacon_info[18] = (uint8_t)(major>>8);
 	m_beacon_info[19] = (uint8_t)(major);
 	m_beacon_info[20] = (uint8_t)(minor>>8);
 	m_beacon_info[21] = (uint8_t)(minor);
-	advertising_init();	// fixme TODO very temporary!!!!
+
+	manuf_specific_data.data.p_data = (uint8_t *) m_beacon_info;
+    err_code = ble_advdata_set(&advdata, NULL);
+    APP_ERROR_CHECK(err_code);
 }
