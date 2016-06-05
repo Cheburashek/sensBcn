@@ -31,7 +31,7 @@ bool MPL115A1::getPressure_hPa ( uint16_t &press )
 	float Pcomp = 0.0;
 
 	errBit = !startConv ();
-	std::this_thread::sleep_for ( std::chrono::milliseconds { 3 } );     // TODO: timer + callback ?
+	std::this_thread::sleep_for ( std::chrono::milliseconds { 3 } );
 
 	errBit = (errBit << 1) | !readRawPress ( Padc );
 	errBit = (errBit << 1) | !readRawTemp ( Tadc );
@@ -153,11 +153,6 @@ bool MPL115A1::calibrate ( void )
 	else sign = 1;
 
 	c12 = (((double) (temp16 & 0x3FFF)) * 0.000000059604539) * sign;     // 0 int bit, 13 fractional, decimal pad = 9
-
-	// LOG
-//	char str[256];
-//	int len = sprintf ( str, "\na0 = %f\nb1 = %f\nb2 = %f\nc12 = %f\n", a0, b1, b2, c12 );
-//	console.write ( str, len );
 
 	if ( 0xFF == errBit ) return true;
 	else return false;

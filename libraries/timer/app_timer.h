@@ -40,6 +40,10 @@
 #ifndef APP_TIMER_H__
 #define APP_TIMER_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdint.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -280,6 +284,10 @@ uint32_t app_timer_cnt_diff_compute(uint32_t   ticks_to,
  * @return Maximum number of events in queue observed so far.
  */
 uint16_t app_timer_op_queue_utilization_get(void);
+#endif
+
+#ifdef __cplusplus
+}
 #endif
 
 #endif // APP_TIMER_H__
