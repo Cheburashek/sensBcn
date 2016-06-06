@@ -34,12 +34,14 @@ using namespace nrf52;
 void hardwareConfig(void) {
 	SystemInit();
 
+#ifdef PRESS_RES_UART
 	IOManager::routeSerial<0, Txd, nrf52::GPIO::Port0, 6>();
 	IOManager::routeSerial<0, Rxd, nrf52::GPIO::Port0, 8>();
 
 	microhal::nrf52::SerialPort::Serial0.open(nrf52::SerialPort::OpenMode::ReadWrite);
 	microhal::nrf52::SerialPort::Serial0.setBaudRate(nrf52::SerialPort::BaudRate::Baud38400);
 	microhal::nrf52::SerialPort::Serial0.setParity(nrf52::SerialPort::Parity::NoParity);
+#endif
 
     IOManager::routeSPImaster<1, MISO, nrf52::GPIO::Port0, 4>();
     IOManager::routeSPImaster<1, MOSI, nrf52::GPIO::Port0, 3>();

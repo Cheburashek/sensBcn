@@ -40,7 +40,10 @@ constexpr GPIO::IOPin led4(nrf52::GPIO::Port0, 20);
 
 constexpr GPIO::IOPin CSpin ( nrf52::GPIO::Port0, 29 ); 	// For SPI
 
+#ifdef PRESS_RES_UART
 IODevice &console = nrf52::SerialPort::Serial0;
+#endif
+
 SPI &SPIM = nrf52::SPI::spi1;
 
 }
